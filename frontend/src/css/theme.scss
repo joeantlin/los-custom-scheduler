@@ -1,0 +1,51 @@
+@use "custom-palette";
+@use "@angular/material" as mat;
+@include mat.core();
+
+$lucid-owl-scheduler-primary: mat.define-palette(
+  custom-palette.$primary-palette
+);
+$lucid-owl-scheduler-accent: mat.define-palette(
+  custom-palette.$primary-palette,
+  A200,
+  A100,
+  A400,
+  A700
+);
+$lucid-owl-scheduler-warn: mat.define-palette(mat.$red-palette);
+
+$lucid-owl-scheduler-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $lucid-owl-scheduler-primary,
+      accent: $lucid-owl-scheduler-accent,
+      warn: $lucid-owl-scheduler-warn,
+    ),
+    typography: mat.define-typography-config(),
+    density: 0,
+  )
+);
+
+$lucid-owl-scheduler-theme-dark: mat.define-dark-theme(
+  (
+    color: (
+      primary: $lucid-owl-scheduler-primary,
+      accent: $lucid-owl-scheduler-accent,
+      warn: $lucid-owl-scheduler-warn,
+    ),
+  )
+);
+
+@include mat.all-component-themes($lucid-owl-scheduler-theme);
+@media (prefers-color-scheme: dark) {
+    @include mat.all-component-themes($lucid-owl-scheduler-theme-dark);
+}
+
+//Add Back if need to toggle between themes
+// .dark-theme {
+//     @include mat.all-component-themes($lucid-owl-scheduler-theme-dark);
+// }
+
+// .light-theme {
+//     @include mat.all-component-themes($lucid-owl-scheduler-theme);
+// }
